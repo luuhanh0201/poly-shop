@@ -8,7 +8,26 @@ class ProductController
     }
     public function index()
     {
-        $data = $this->productModel->getAll();
+        $itemsPerPage = 10;
+        $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $currentPage = max(1, $currentPage);
+
+        $totalItems = $this->productModel->getTotal();
+        $totalPages = ceil($totalItems / $itemsPerPage);
+
+        // Ensure current page doesn't exceed total pages
+        $currentPage = min($currentPage, max(1, $totalPages));
+
+        $offset = ($currentPage - 1) * $itemsPerPage;
+        $data = $this->productModel->getAllWithLimit($itemsPerPage, $offset);
+
+        $pagination = [
+            'currentPage' => $currentPage,
+            'totalPages' => $totalPages,
+            'totalItems' => $totalItems,
+            'itemsPerPage' => $itemsPerPage
+        ];
+
         $title = 'Quản lý sản phẩm';
         $view = 'products/index';
         require_once PATH_VIEW_MAIN_ADMIN;
@@ -36,6 +55,7 @@ class ProductController
             $name = $_POST['name'] ?? '';
             $price = $_POST['price'] ?? '';
             $category_id = $_POST['category_id'] ?? '';
+            $quantity = $_POST['quantity'] ?? '';
             $description = $_POST['description'] ?? '';
 
             // Xử lý upload hình ảnh
@@ -62,6 +82,7 @@ class ProductController
                 'name' => $name,
                 'price' => $price,
                 'category_id' => $category_id,
+                'quantity' => $quantity,
                 'description' => $description,
                 'image' => $image
             ]);
@@ -93,7 +114,7 @@ class ProductController
             $price = $_POST['price'] ?? '';
             $category_id = $_POST['category_id'] ?? '';
             $description = $_POST['description'] ?? '';
-
+            $quantity = $_POST['quantity'] ?? '';
             // Xử lý upload hình ảnh
             $image = $product['image']; // Giữ nguyên hình cũ nếu không có hình mới
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -108,7 +129,7 @@ class ProductController
                 }
             }
 
-            if (empty($name) || empty($price) || empty($category_id)) {
+            if (empty($name) || empty($price) || empty($category_id) || empty($quantity)) {
                 $error = 'Vui lòng điền đầy đủ thông tin.';
                 require_once PATH_VIEW_MAIN_ADMIN;
                 return;
@@ -118,6 +139,7 @@ class ProductController
                 'name' => $name,
                 'price' => $price,
                 'category_id' => $category_id,
+                'quantity' => $quantity,
                 'description' => $description,
                 'image' => $image
             ]);

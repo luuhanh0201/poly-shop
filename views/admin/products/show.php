@@ -57,6 +57,12 @@ $product = $product ?? $data ?? null;
                             <?= number_format((float) ($product['price'] ?? 0), 0, ',', '.') ?> đ
                         </div>
                     </div>
+                    <div class="col-12">
+                        <label class="form-label text-muted mb-1">Số lượng</label>
+                        <div>
+                            <?= htmlspecialchars((string) ($product['quantity'] ?? 0)) ?>
+                        </div>
+                    </div>
 
                     <div class="col-12">
                         <label class="form-label text-muted mb-1">Mô tả</label>

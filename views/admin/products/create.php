@@ -37,6 +37,11 @@
             value="<?= htmlspecialchars((string) ($_POST['price'] ?? '')) ?>" required>
     </div>
     <div class="col-12">
+        <label for="quantity" class="form-label">Số lượng</label>
+        <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Ví dụ: 100"
+            value="<?= htmlspecialchars((string) ($_POST['quantity'] ?? '')) ?>" required>
+    </div>
+    <div class="col-12">
         <label for="description" class="form-label">Mô tả</label>
         <textarea id="description" name="description" class="form-control" rows="4"
             placeholder="Mô tả sản phẩm..."><?= htmlspecialchars((string) ($_POST['description'] ?? '')) ?></textarea>

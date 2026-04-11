@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css" integrity="sha512-NhLySQDkiKSKnT+R795uaHWRQ7D3VuIvgeOLCK8cWq4w5fq4sWF90gj8eURpTqn/f1mFzqClpOz8JPlgVTLfFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -94,8 +95,8 @@
             background: rgba(255, 253, 247, 0.9);
             border: 1px solid var(--line);
             border-radius: 1.2rem;
-            padding: 1rem;
-            margin-bottom: 2rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
         }
 
         .user-actions .nav-link {
@@ -181,28 +182,36 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a href="<?= BASE_URL ?>" class="nav-link menu-link">Trang chủ</a></li>
-                    <li class="nav-item"><a href="<?= BASE_URL ?>/products" class="nav-link menu-link">Sản phẩm</a></li>
-                    <li class="nav-item"><a href="<?= BASE_URL ?>/contact" class="nav-link menu-link">Liên hệ</a></li>
+                    <li class="nav-item"><a href="<?= BASE_URL ?>?action=products" class="nav-link menu-link">Sản
+                            phẩm</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link menu-link">Liên hệ</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav user-actions">
-                    <li class="nav-item"><a href="#" class="nav-link auth-link">Đăng ký</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link auth-link primary">Đăng nhập</a></li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item">
+                            <a href="<?= BASE_URL ?>?action=profile" class="nav-link menu-link"
+                                style="color: var(--accent); font-weight: 600;">
+                                <i class="fas fa-user"></i> <?= htmlspecialchars((string) $_SESSION['user_name']) ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= BASE_URL ?>?action=logout" class="nav-link auth-link primary">Đăng Xuất</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item"><a href="<?= BASE_URL ?>?action=register" class="nav-link auth-link">Đăng
+                                ký</a></li>
+                        <li class="nav-item"><a href="<?= BASE_URL ?>?action=login" class="nav-link auth-link primary">Đăng
+                                nhập</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="hero">
-            <h1><?= $title ?? 'Siêu thị đồ và phụ kiện cầu lông' ?></h1>
-            <p>Từ vợt, giày, túi đựng đến bóng và quần áo thi đấu. Tất cả được sắp xếp gọn gàng để bạn chọn nhanh và
-                đúng nhu cầu.</p>
-            <div class="mt-2">
-                <span class="chip">Chuyên đồ cầu lông</span>
-                <span class="chip">Giá tốt mỗi ngày</span>
-            </div>
-        </section>
+    <div class="container" style="padding-top: 1.5rem;">
+
 
         <div class="content-shell">
             <?php
@@ -213,7 +222,11 @@
         </div>
 
         <footer class="site-footer">
-            <div>Badminton Hub - Đồ bền, đẹp và đúng chất cho người chơi cầu lông.</div>
+            <div style="text-align: center; color: #5a6f63;">
+                <p style="margin: 0;"> <strong>Poly shop</strong> - Đồ bền, đẹp và đúng chất cho người chơi cầu
+                    lông.</p>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem;">© 2026 Poly Shop. Tất cả quyền được bảo lưu.</p>
+            </div>
         </footer>
     </div>
 

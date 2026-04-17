@@ -375,7 +375,7 @@
 
 <div class="section-head" id="san-pham-hot" style="margin-top: 2.5rem;">
     <h2>Sản phẩm mới nhất</h2>
-    <a href="?action=products" class="view-all-link">Xem tất cả →</a>
+    <a href="products" class="view-all-link">Xem tất cả →</a>
 </div>
 
 <section class="hot-grid">
@@ -398,7 +398,7 @@
                         <div class="price">
                             <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                         </div>
-                        <a href="?action=product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
+                        <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
                             class="hot-card-link">
                             Xem chi tiết
                         </a>
@@ -419,7 +419,7 @@
         <?php if (!empty($categoryData['products'])): ?>
             <div class="section-head" style="margin-top: 2.5rem;">
                 <h2>Sản phẩm <?= htmlspecialchars((string) $categoryData['name']) ?></h2>
-                <a href="?action=products&category=<?= htmlspecialchars((string) $categoryId) ?>" class="view-all-link">Xem tất cả
+                <a href="products&category=<?= htmlspecialchars((string) $categoryId) ?>" class="view-all-link">Xem tất cả
                     →</a>
             </div>
 
@@ -442,7 +442,7 @@
                                 <div class="price">
                                     <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                                 </div>
-                                <a href="?action=product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
+                                <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
                                     class="hot-card-link">
                                     Xem chi tiết
                                 </a>

@@ -453,7 +453,7 @@
                                 <div class="related-price">
                                     <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                                 </div>
-                                <a href="?action=product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
+                                <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
                                     style="display: block; margin-top: 0.8rem; text-align: center; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600;">
                                     Xem chi tiết →
                                 </a>
@@ -467,7 +467,7 @@
 
     <!-- Back Link -->
     <div style="margin-bottom: 2rem;">
-        <a href="?action=products"
+        <a href="products"
             style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
             ← Quay lại danh sách sản phẩm
         </a>
@@ -475,7 +475,7 @@
 <?php else: ?>
     <div style="text-align: center; padding: 3rem 2rem; background: var(--soft); border-radius: 1rem;">
         <h2>Sản phẩm không tồn tại</h2>
-        <p style="color: #5a6f63;">Vui lòng quay lại <a href="?action=products"
+        <p style="color: #5a6f63;">Vui lòng quay lại <a href="products"
                 style="color: var(--accent); text-decoration: none;">danh sách sản phẩm</a></p>
     </div>
 <?php endif; ?>

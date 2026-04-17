@@ -1,7 +1,7 @@
 <?php
 
 class AuthController
-{
+{ 
     private $userModel;
 
     public function __construct()
@@ -44,7 +44,7 @@ class AuthController
                         'password' => $password
                     ])
                 ) {
-                    $message = 'Đăng ký thành công! Vui lòng <a href="?action=login" style="color: var(--accent);">đăng nhập</a>';
+                    $message = 'Đăng ký thành công! Vui lòng <a href="login" style="color: var(--accent);">đăng nhập</a>';
                 } else {
                     $error = 'Có lỗi xảy ra. Vui lòng thử lại.';
                 }
@@ -84,7 +84,7 @@ class AuthController
                     $_SESSION['user_role'] = $user['role'] ?? 'customer';
 
                     // Redirect to home
-                    header('Location: ?action=/&success=1');
+                    header('Location: /');
                     exit;
                 } else {
                     $error = 'Email hoặc mật khẩu không chính xác';
@@ -104,7 +104,7 @@ class AuthController
     public function logout()
     {
         session_destroy();
-        header('Location: ?action=/');
+        header('Location: /');
         exit;
     }
 
@@ -112,11 +112,11 @@ class AuthController
     {
         // Check if user is logged in
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ?action=login');
+            header('Location: login');
             exit;
         }
 
-        $view = 'auth/profile';
+        $view = 'client/auth/profile';
         $user = $this->userModel->findById($_SESSION['user_id']);
         $message = '';
         $error = '';

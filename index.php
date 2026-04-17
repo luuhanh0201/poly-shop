@@ -37,9 +37,14 @@ if ($scriptDir !== '' && strpos($requestPath, $scriptDir) === 0) {
 
 $segments = $requestPath === '' ? [] : explode('/', $requestPath);
 
-if (!isset($_GET['mode']) && isset($segments[0]) && $segments[0] === 'admin') {
-    $mode = 'admin';
-    $action = isset($segments[1]) ? implode('/', array_slice($segments, 1)) : '/';
+if (!isset($_GET['mode'])) {
+    if (isset($segments[0]) && $segments[0] === 'admin') {
+        $mode = 'admin';
+        $action = isset($segments[1]) ? implode('/', array_slice($segments, 1)) : '/';
+    } else {
+        $mode = 'client';
+        $action = !empty($segments) ? implode('/', $segments) : '/';
+    }
 }
 
 $_GET['mode'] = $mode;
@@ -47,10 +52,14 @@ $_GET['action'] = $action;
 
 if ($mode == 'admin') {
     // Kiểm tra đăng nhập tài khoản có quyền admin hay không
-    // Nếu không có quyền admin đẩy sang router của client
-    #require đường dẫn của admin
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        // Không có quyền admin, đẩy sang router của client
+        header('Location: ' . BASE_URL);
+        exit;
+    }
+    // Nếu có quyền admin đẩy sang router của admin
     require_once './routes/admin.php';
 } else {
-    #require đường dẫn của client
+    // Require đường dẫn của client
     require_once './routes/client.php';
 }

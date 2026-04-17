@@ -21,3 +21,20 @@ if (!function_exists('upload_file')) {
         throw new Exception('Upload file không thành công!');
     }
 }
+
+if (!function_exists('is_admin')) {
+    function is_admin()
+    {
+        return isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'admin';
+    }
+}
+
+if (!function_exists('require_admin')) {
+    function require_admin()
+    {
+        if (!is_admin()) {
+            header('Location: ' . BASE_URL);
+            exit;
+        }
+    }
+}

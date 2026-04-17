@@ -305,7 +305,7 @@
                         <div class="product-price">
                             <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                         </div>
-                        <a href="?action=product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
+                        <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
                             class="product-link">
                             Chi tiết →
                         </a>
@@ -324,10 +324,10 @@
 <?php if ($totalPages > 1): ?>
     <div class="pagination">
         <?php if ($page > 1): ?>
-            <a href="?action=products&page=1&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">← Đầu
+            <a href="products&page=1&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">← Đầu
                 tiên</a>
             <a
-                href="?action=products&page=<?= $page - 1 ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">←
+                href="products&page=<?= $page - 1 ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">←
                 Trước</a>
         <?php else: ?>
             <span class="disabled">← Đầu tiên</span>
@@ -343,16 +343,16 @@
                 <span class="active"><?= $i ?></span>
             <?php else: ?>
                 <a
-                    href="?action=products&page=<?= $i ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>"><?= $i ?></a>
+                    href="products&page=<?= $i ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>"><?= $i ?></a>
             <?php endif; ?>
         <?php endfor; ?>
 
         <?php if ($page < $totalPages): ?>
             <a
-                href="?action=products&page=<?= $page + 1 ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">Tiếp
+                href="products&page=<?= $page + 1 ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">Tiếp
                 →</a>
             <a
-                href="?action=products&page=<?= $totalPages ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">Cuối
+                href="products&page=<?= $totalPages ?>&search=<?= urlencode($search) ?>&category=<?= urlencode($category_id) ?>">Cuối
                 →</a>
         <?php else: ?>
             <span class="disabled">Tiếp →</span>

@@ -8,9 +8,11 @@
     <title><?= $title ?? 'Badminton Hub' ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css"
+        integrity="sha512-NhLySQDkiKSKnT+R795uaHWRQ7D3VuIvgeOLCK8cWq4w5fq4sWF90gj8eURpTqn/f1mFzqClpOz8JPlgVTLfFw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css" integrity="sha512-NhLySQDkiKSKnT+R795uaHWRQ7D3VuIvgeOLCK8cWq4w5fq4sWF90gj8eURpTqn/f1mFzqClpOz8JPlgVTLfFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -182,7 +184,7 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a href="<?= BASE_URL ?>" class="nav-link menu-link">Trang chủ</a></li>
-                    <li class="nav-item"><a href="<?= BASE_URL ?>?action=products" class="nav-link menu-link">Sản
+                    <li class="nav-item"><a href="products" class="nav-link menu-link">Sản
                             phẩm</a></li>
                     <li class="nav-item"><a href="#" class="nav-link menu-link">Liên hệ</a>
                     </li>
@@ -190,19 +192,27 @@
 
                 <ul class="navbar-nav user-actions">
                     <?php if (isset($_SESSION['user_id'])): ?>
+                        <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                            <li class="nav-item">
+                                <a href="<?= BASE_URL_ADMIN ?>" class="nav-link menu-link"
+                                    style="background: linear-gradient(135deg, #1f7fbb, #2aa54e); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700; margin-right: 0.5rem;">
+                                    Quản Trị
+                                </a>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
-                            <a href="<?= BASE_URL ?>?action=profile" class="nav-link menu-link"
+                            <a href="profile" class="nav-link menu-link"
                                 style="color: var(--accent); font-weight: 600;">
-                                <i class="fas fa-user"></i> <?= htmlspecialchars((string) $_SESSION['user_name']) ?>
+                                <i class="fa-regular fa-user"></i> <?= htmlspecialchars((string) $_SESSION['user_name']) ?>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= BASE_URL ?>?action=logout" class="nav-link auth-link primary">Đăng Xuất</a>
+                            <a href="<?= BASE_URL ?>logout" class="nav-link auth-link primary">Đăng Xuất</a>
                         </li>
                     <?php else: ?>
-                        <li class="nav-item"><a href="<?= BASE_URL ?>?action=register" class="nav-link auth-link">Đăng
+                        <li class="nav-item"><a href="<?= BASE_URL ?>/register" class="nav-link auth-link">Đăng
                                 ký</a></li>
-                        <li class="nav-item"><a href="<?= BASE_URL ?>?action=login" class="nav-link auth-link primary">Đăng
+                        <li class="nav-item"><a href="<?= BASE_URL ?>/login" class="nav-link auth-link primary">Đăng
                                 nhập</a></li>
                     <?php endif; ?>
                 </ul>

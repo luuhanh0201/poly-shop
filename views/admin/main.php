@@ -7,6 +7,9 @@
     <title><?= $title ?? 'Quản trị' ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css"
+        integrity="sha512-NhLySQDkiKSKnT+R795uaHWRQ7D3VuIvgeOLCK8cWq4w5fq4sWF90gj8eURpTqn/f1mFzqClpOz8JPlgVTLfFw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --admin-bg: #f3f5f8;
@@ -129,12 +132,12 @@
         <aside class="admin-sidebar">
             <div class="admin-brand">Admin Panel</div>
             <nav class="admin-menu">
-                <a href="<?= BASE_URL_ADMIN ?>" class="active">Dashboard</a>
-                <a href="<?= BASE_URL_ADMIN ?>/categories">Quản lý danh mục</a>
-                <a href="<?= BASE_URL_ADMIN ?>/products">Quản lý sản phẩm</a>
-                <a href="#">Quản lý đơn hàng</a>
-                <a href="#">Quản lý người dùng</a>
-                <a href="<?= BASE_URL ?>">Về trang người dùng</a>
+                <a href="<?= BASE_URL_ADMIN ?>/" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="<?= BASE_URL_ADMIN ?>/users"><i class="fas fa-users"></i> Quản lý người dùng</a>
+                <a href="<?= BASE_URL_ADMIN ?>/categories"><i class="fas fa-folder"></i> Quản lý danh mục</a>
+                <a href="<?= BASE_URL_ADMIN ?>/products"><i class="fas fa-box"></i> Quản lý sản phẩm</a>
+                <a href="#"><i class="fas fa-clipboard"></i> Quản lý đơn hàng</a>
+                <a href="<?= BASE_URL ?>"><i class="fas fa-arrow-left"></i> Về trang người dùng</a>
             </nav>
         </aside>
 

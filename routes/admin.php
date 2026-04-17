@@ -3,6 +3,7 @@
 require_once PATH_CONTROLLER_ADMIN . 'CategoryController.php';
 require_once PATH_CONTROLLER_ADMIN . 'DashboardController.php';
 require_once PATH_CONTROLLER_ADMIN . 'ProductController.php';
+require_once PATH_CONTROLLER_ADMIN . 'UserController.php';
 
 $action = $_GET['action'] ?? '/';
 
@@ -10,6 +11,9 @@ match ($action) {
     // '/'         => (new HomeController)->index(),
     '/' => (new \DashboardController)->index(),
 
+    // Users
+    'users' => (new \UserController)->index(),
+    'users/edit' => (new \UserController)->edit($_GET['id'] ?? null),
 
     // Categories
     'categories' => (new \CategoryController)->index(),

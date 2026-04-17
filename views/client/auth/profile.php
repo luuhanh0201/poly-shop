@@ -149,8 +149,16 @@
 
 <div class="profile-container">
     <div class="profile-header">
-        <h1>Hồ Sơ Của Tôi</h1>
-        <a href="?action=logout" class="logout-btn">Đăng Xuất</a>
+        <h1> Hồ Sơ Của Tôi</h1>
+        <div style="display: flex; gap: 0.75rem;">
+            <?php if ($data['user']['role'] === 'admin'): ?>
+                <a href="<?= BASE_URL_ADMIN ?>" class="logout-btn" 
+                    style="background: #1f7fbb; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    Quản Trị
+                </a>
+            <?php endif; ?>
+            <a href="logout" class="logout-btn">Đăng Xuất</a>
+        </div>
     </div>
 
     <?php if (!empty($data['message'])): ?>

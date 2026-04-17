@@ -169,7 +169,7 @@
 
         <?php if (!empty($data['error'])): ?>
             <div class="alert alert-danger">
-                ✗ <?= htmlspecialchars((string) $data['error']) ?>
+                <?= htmlspecialchars((string) $data['error']) ?>
             </div>
         <?php endif; ?>
 
@@ -197,7 +197,7 @@
         </form>
 
         <div class="auth-footer">
-            Chưa có tài khoản? <a href="?action=register">Đăng ký ngay</a>
+            Chưa có tài khoản? <a href="register">Đăng ký ngay</a>
         </div>
     </div>
 </div>

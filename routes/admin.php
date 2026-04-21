@@ -13,7 +13,9 @@ match ($action) {
 
     // Users
     'users' => (new \UserController)->index(),
+    'users/create' => (new \UserController)->create(),
     'users/edit' => (new \UserController)->edit($_GET['id'] ?? null),
+    'users/delete' => (new \UserController)->delete($_GET['id'] ?? null),
 
     // Categories
     'categories' => (new \CategoryController)->index(),

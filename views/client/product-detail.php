@@ -355,7 +355,7 @@
                         <img src="<?= BASE_URL . '/uploads/' . htmlspecialchars((string) $data['image']) ?>"
                             alt="<?= htmlspecialchars((string) $data['name']) ?>">
                     <?php else: ?>
-                        
+
                     <?php endif; ?>
                 </div>
             </div>
@@ -453,7 +453,7 @@
                                 <div class="related-price">
                                     <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                                 </div>
-                                <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
+                                <a href="product-detail?id=<?= htmlspecialchars((string) $product['id']) ?>"
                                     style="display: block; margin-top: 0.8rem; text-align: center; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600;">
                                     Xem chi tiết →
                                 </a>

@@ -3,6 +3,11 @@
         <div class="col-md-6">
             <h1 class="h3"><i class="fas fa-users"></i> Quản Lý Người Dùng</h1>
         </div>
+        <div class="col-md-6 text-end">
+            <a href="<?= BASE_URL_ADMIN ?>/users/create" class="btn btn-success">
+                <i class="fas fa-plus"></i> Thêm người dùng
+            </a>
+        </div>
     </div>
 
     <div class="card">
@@ -17,7 +22,7 @@
                             <th style="width: 15%">Điện thoại</th>
                             <th style="width: 15%">Role</th>
                             <th style="width: 15%">Ngày đăng ký</th>
-                            <th style="width: 10%">Thao tác</th>
+                            <th style="width: 20%">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,10 +44,17 @@
                                         <?= date('d/m/Y H:i', strtotime($user['created_at'])) ?>
                                     </td>
                                     <td>
-                                        <a href="<?= BASE_URL_ADMIN ?>users/edit&id=<?= $user['id'] ?>"
+                                        <a href="<?= BASE_URL_ADMIN ?>/users/edit?id=<?= (int) $user['id'] ?>"
                                             class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i> Sửa
                                         </a>
+                                        <?php if ((int) $user['id'] !== (int) ($_SESSION['user_id'] ?? 0)): ?>
+                                            <a href="<?= BASE_URL_ADMIN ?>/users/delete?id=<?= (int) $user['id'] ?>"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Bạn có chắc muốn xóa người dùng này?')">
+                                                <i class="fas fa-trash"></i> Xóa
+                                            </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -63,11 +75,11 @@
                     <ul class="pagination justify-content-center">
                         <?php if ($data['pagination']['current'] > 1): ?>
                             <li class="page-item">
-                                <a class="page-link" href="<?= BASE_URL_ADMIN ?>users&page=1">Đầu tiên</a>
+                                <a class="page-link" href="<?= BASE_URL_ADMIN ?>/users?page=1">Đầu tiên</a>
                             </li>
                             <li class="page-item">
                                 <a class="page-link"
-                                    href="<?= BASE_URL_ADMIN ?>users&page=<?= $data['pagination']['current'] - 1 ?>">Trước</a>
+                                    href="<?= BASE_URL_ADMIN ?>/users?page=<?= $data['pagination']['current'] - 1 ?>">Trước</a>
                             </li>
                         <?php endif; ?>
 
@@ -81,7 +93,7 @@
 
                         <?php for ($i = $start; $i <= $end; $i++): ?>
                             <li class="page-item <?= ($i === $data['pagination']['current']) ? 'active' : '' ?>">
-                                <a class="page-link" href="<?= BASE_URL_ADMIN ?>users&page=<?= $i ?>">
+                                <a class="page-link" href="<?= BASE_URL_ADMIN ?>/users?page=<?= $i ?>">
                                     <?= $i ?>
                                 </a>
                             </li>
@@ -94,11 +106,11 @@
                         <?php if ($data['pagination']['current'] < $data['pagination']['total']): ?>
                             <li class="page-item">
                                 <a class="page-link"
-                                    href="<?= BASE_URL_ADMIN ?>users&page=<?= $data['pagination']['current'] + 1 ?>">Sau</a>
+                                    href="<?= BASE_URL_ADMIN ?>/users?page=<?= $data['pagination']['current'] + 1 ?>">Sau</a>
                             </li>
                             <li class="page-item">
                                 <a class="page-link"
-                                    href="<?= BASE_URL_ADMIN ?>users&page=<?= $data['pagination']['total'] ?>">Cuối
+                                    href="<?= BASE_URL_ADMIN ?>/users?page=<?= $data['pagination']['total'] ?>">Cuối
                                     cùng</a>
                             </li>
                         <?php endif; ?>

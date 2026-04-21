@@ -197,7 +197,7 @@
         </form>
 
         <div class="auth-footer">
-            Chưa có tài khoản? <a href="register">Đăng ký ngay</a>
+            Chưa có tài khoản? <a href="<?= BASE_URL ?>/register">Đăng ký ngay</a>
         </div>
     </div>
 </div>

@@ -384,10 +384,10 @@
             <article class="hot-card">
                 <div class="hot-card-image">
                     <?php if (!empty($product['image'])): ?>
-                        <img src="<?= BASE_URL . '/uploads/'  . htmlspecialchars((string) $product['image']) ?>"
+                        <img src="<?= BASE_URL . '/uploads/' . htmlspecialchars((string) $product['image']) ?>"
                             alt="<?= htmlspecialchars((string) $product['name']) ?>">
                     <?php else: ?>
-                    
+
                     <?php endif; ?>
                 </div>
                 <div class="hot-card-content">
@@ -398,8 +398,7 @@
                         <div class="price">
                             <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                         </div>
-                        <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
-                            class="hot-card-link">
+                        <a href="product-detail?id=<?= htmlspecialchars((string) $product['id']) ?>" class="hot-card-link">
                             Xem chi tiết
                         </a>
                     </div>
@@ -419,7 +418,7 @@
         <?php if (!empty($categoryData['products'])): ?>
             <div class="section-head" style="margin-top: 2.5rem;">
                 <h2>Sản phẩm <?= htmlspecialchars((string) $categoryData['name']) ?></h2>
-                <a href="products&category=<?= htmlspecialchars((string) $categoryId) ?>" class="view-all-link">Xem tất cả
+                <a href="products?category=<?= htmlspecialchars((string) $categoryId) ?>" class="view-all-link">Xem tất cả
                     →</a>
             </div>
 
@@ -428,10 +427,10 @@
                     <article class="hot-card">
                         <div class="hot-card-image">
                             <?php if (!empty($product['image'])): ?>
-                                <img src="<?= BASE_URL . '/uploads/'  . htmlspecialchars((string) $product['image']) ?>"
+                                <img src="<?= BASE_URL . '/uploads/' . htmlspecialchars((string) $product['image']) ?>"
                                     alt="<?= htmlspecialchars((string) $product['name']) ?>">
                             <?php else: ?>
-                               
+
                             <?php endif; ?>
                         </div>
                         <div class="hot-card-content">
@@ -442,8 +441,7 @@
                                 <div class="price">
                                     <?= number_format((int) ($product['price'] ?? 0), 0, ',', '.') ?> VND
                                 </div>
-                                <a href="product-detail&id=<?= htmlspecialchars((string) $product['id']) ?>"
-                                    class="hot-card-link">
+                                <a href="product-detail?id=<?= htmlspecialchars((string) $product['id']) ?>" class="hot-card-link">
                                     Xem chi tiết
                                 </a>
                             </div>

@@ -4,7 +4,7 @@
             <h1 class="h3"><i class="fas fa-edit"></i> Cập Nhật Người Dùng</h1>
         </div>
         <div class="col-md-6 text-end">
-            <a href="<?= BASE_URL_ADMIN ?>users" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>
+            <a href="<?= BASE_URL_ADMIN ?>/users" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>
                 Quay lại</a>
         </div>
     </div>
@@ -101,7 +101,7 @@
                         </li>
                         <li>
                             <strong>Trạng thái:</strong><br>
-                            <?php if ($data['user']['status'] === 'active'): ?>
+                            <?php if (($data['user']['status'] ?? 'active') === 'active'): ?>
                                 <span class="badge bg-success">Hoạt động</span>
                             <?php else: ?>
                                 <span class="badge bg-secondary">Ẩn</span>

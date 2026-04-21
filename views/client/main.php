@@ -201,13 +201,13 @@
                             </li>
                         <?php endif; ?>
                         <li class="nav-item">
-                            <a href="profile" class="nav-link menu-link"
+                            <a href="<?= BASE_URL ?>/profile" class="nav-link menu-link"
                                 style="color: var(--accent); font-weight: 600;">
                                 <i class="fa-regular fa-user"></i> <?= htmlspecialchars((string) $_SESSION['user_name']) ?>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= BASE_URL ?>logout" class="nav-link auth-link primary">Đăng Xuất</a>
+                            <a href="<?= BASE_URL ?>/logout" class="nav-link auth-link primary">Đăng Xuất</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item"><a href="<?= BASE_URL ?>/register" class="nav-link auth-link">Đăng

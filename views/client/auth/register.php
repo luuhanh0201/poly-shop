@@ -222,7 +222,7 @@
         </form>
 
         <div class="auth-footer">
-            Đã có tài khoản? <a href="login">Đăng nhập ngay</a>
+            Đã có tài khoản? <a href="<?= BASE_URL ?>/login">Đăng nhập ngay</a>
         </div>
     </div>
 </div>

@@ -31,6 +31,20 @@ class UserModel extends BaseModel
         ]);
     }
 
+    public function createByAdmin($data)
+    {
+        $sql = "INSERT INTO users (email, password, name, phone, role, created_at)
+                VALUES (:email, :password, :name, :phone, :role, NOW())";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            'email' => $data['email'] ?? '',
+            'password' => password_hash($data['password'] ?? '', PASSWORD_BCRYPT),
+            'name' => $data['name'] ?? '',
+            'phone' => $data['phone'] ?? '',
+            'role' => $data['role'] ?? 'customer'
+        ]);
+    }
+
     public function update($id, $data)
     {
         $sql = "UPDATE users SET name = :name, phone = :phone WHERE id = :id";
@@ -71,5 +85,12 @@ class UserModel extends BaseModel
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total'] ?? 0;
+    }
+
+    public function deleteById($id)
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute(['id' => $id]);
     }
 }

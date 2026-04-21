@@ -1,6 +1,7 @@
 <?php
 
 require_once PATH_CONTROLLER_ADMIN . 'CategoryController.php';
+require_once PATH_CONTROLLER_ADMIN . 'CommentController.php';
 require_once PATH_CONTROLLER_ADMIN . 'DashboardController.php';
 require_once PATH_CONTROLLER_ADMIN . 'ProductController.php';
 require_once PATH_CONTROLLER_ADMIN . 'UserController.php';
@@ -22,6 +23,12 @@ match ($action) {
     'categories/create' => (new \CategoryController)->create(),
     'categories/edit' => (new \CategoryController)->edit($_GET['id'] ?? null),
     'categories/delete' => (new \CategoryController)->delete($_GET['id'] ?? null),
+
+    // Comments
+    'comments' => (new \CommentController)->index(),
+    'comments/approve' => (new \CommentController)->approve($_GET['id'] ?? null),
+    'comments/hide' => (new \CommentController)->hide($_GET['id'] ?? null),
+    'comments/delete' => (new \CommentController)->delete($_GET['id'] ?? null),
 
     // Products
     'products' => (new \ProductController)->index(),

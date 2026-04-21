@@ -136,6 +136,7 @@
                 <a href="<?= BASE_URL_ADMIN ?>/users"><i class="fas fa-users"></i> Quản lý người dùng</a>
                 <a href="<?= BASE_URL_ADMIN ?>/categories"><i class="fas fa-folder"></i> Quản lý danh mục</a>
                 <a href="<?= BASE_URL_ADMIN ?>/products"><i class="fas fa-box"></i> Quản lý sản phẩm</a>
+                <a href="<?= BASE_URL_ADMIN ?>/comments"><i class="fas fa-comments"></i> Quản lý bình luận</a>
                 <a href="#"><i class="fas fa-clipboard"></i> Quản lý đơn hàng</a>
                 <a href="<?= BASE_URL ?>"><i class="fas fa-arrow-left"></i> Về trang người dùng</a>
             </nav>

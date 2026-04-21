@@ -228,6 +228,75 @@
         border-top: 2px solid var(--line);
     }
 
+    .comment-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--line);
+    }
+
+    .comment-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .comment-alert {
+        border-radius: 0.6rem;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .comment-alert.success {
+        background: rgba(42, 165, 78, 0.12);
+        color: #1f6f35;
+        border: 1px solid rgba(42, 165, 78, 0.25);
+    }
+
+    .comment-alert.error {
+        background: rgba(211, 47, 47, 0.1);
+        color: #9b1f1f;
+        border: 1px solid rgba(211, 47, 47, 0.2);
+    }
+
+    .comment-form {
+        margin-bottom: 1.5rem;
+    }
+
+    .comment-form textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 0.8rem;
+        border-radius: 0.7rem;
+        border: 1px solid var(--line);
+        resize: vertical;
+        font-family: inherit;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .comment-item {
+        border: 1px solid var(--line);
+        border-radius: 0.8rem;
+        padding: 0.9rem 1rem;
+        margin-bottom: 0.8rem;
+        background: #fff;
+    }
+
+    .comment-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.45rem;
+        color: #5a6f63;
+        font-size: 0.85rem;
+    }
+
+    .comment-content {
+        color: #223;
+        line-height: 1.55;
+        word-break: break-word;
+    }
+
     .related-products h2 {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
@@ -433,7 +502,58 @@
             </div>
         </div>
 
-        <!-- Related Products -->
+        <section class="comment-section">
+            <h2>Bình luận sản phẩm</h2>
+
+            <?php if (!empty($commentMessage)): ?>
+                <div class="comment-alert success"><?= htmlspecialchars((string) $commentMessage) ?></div>
+            <?php endif; ?>
+
+            <?php if (!empty($commentError)): ?>
+                <div class="comment-alert error"><?= htmlspecialchars((string) $commentError) ?></div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <form method="POST" class="comment-form" action="product-detail?id=<?= (int) ($data['id'] ?? 0) ?>">
+                    <textarea name="comment_content" maxlength="1000" placeholder="Nhập bình luận của bạn..."
+                        required></textarea>
+                    <button type="submit" class="btn-primary" style="max-width: 240px;">Gửi bình luận</button>
+                </form>
+            <?php else: ?>
+                <p style="margin-bottom: 1rem; color: #5a6f63;">
+                    Vui lòng <a href="login" style="color: var(--accent); text-decoration: none;">đăng nhập</a> để bình luận.
+                </p>
+            <?php endif; ?>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $comment): ?>
+                    <article class="comment-item">
+                        <div class="comment-meta">
+                            <strong><?= htmlspecialchars((string) ($comment['user_name'] ?? 'Người dùng')) ?></strong>
+                            <div style="display:flex;align-items:center;gap:0.75rem;">
+                                <span><?= date('d/m/Y H:i', strtotime((string) ($comment['created_at'] ?? 'now'))) ?></span>
+                                <?php if (isset($_SESSION['user_id']) && (int) $_SESSION['user_id'] === (int) ($comment['user_id'] ?? -1)): ?>
+                                    <form method="POST" action="comment/delete" style="margin:0;">
+                                        <input type="hidden" name="comment_id" value="<?= (int) $comment['id'] ?>">
+                                        <input type="hidden" name="product_id" value="<?= (int) ($data['id'] ?? 0) ?>">
+                                        <button type="submit" onclick="return confirm('Xóa bình luận này?')"
+                                            style="background:none;border:none;color:#d32f2f;cursor:pointer;font-size:0.8rem;padding:0;">
+                                            &#128465; Xoá
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <?= nl2br(htmlspecialchars((string) ($comment['content'] ?? ''))) ?>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style="color: #5a6f63;">Chưa có bình luận nào cho sản phẩm này.</p>
+            <?php endif; ?>
+        </section>
+
         <?php if (!empty($related)): ?>
             <div class="related-products">
                 <h2>Sản phẩm liên quan</h2>
